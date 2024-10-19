@@ -1,0 +1,134 @@
+@import './variables';
+@import './animations';
+
+// Default CSS overiding
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Webpage default root element sizing
+html {
+    // 16px = 100%
+    // (10/16) * 100 = 62.5
+    // 1rem = 10px
+    font-size: 62.5%;
+}
+
+
+.container {
+    position: relative;
+    overflow: hidden;
+    .navbar-container {
+        position: absolute;
+    }
+
+    .hero {
+        height: 80vh;
+        width: 100%;
+        background-color: $color-secondary;
+        display: flex;
+
+        &__content {
+            // Three values: flex-grow | flex-shrink | flex-basis
+            flex: 0 0 55%; 
+            height: 100%;
+            display: flex;
+            align-items: center;
+            // margin-left: 10%;
+            gap: 2rem;
+
+           .content{
+            display: flex;
+            flex-direction: column;
+            gap: 3.5rem;
+            margin-left: 10%;
+            .headline{
+                display: flex;
+                flex-direction: column;
+                font-size: 5.8rem;
+                transition: all 1s ease;
+                animation: moveInRight 1s ease-in forwards;
+            }
+
+            .description{
+                opacity: 0;
+                font-size: 2.2rem;
+                font-weight: 600;
+                max-width: 25vw;
+                animation: moveInRight 1s ease-in 0.4s forwards;
+            }
+
+            .points{
+                opacity: 0;
+                font-size: 2rem;
+                list-style: none;
+                animation: moveInRight 1s ease-in 0.7s forwards;
+            }
+
+            .button {
+                opacity: 0;
+                align-self: self-start;
+                flex: none;
+                font-size: 1.4rem;
+                font-weight: 700;
+                padding: 1rem 2rem;
+                position: relative;
+                z-index: 2; /* Ensure the text remains on top */
+                border: none;
+                color: white;
+                background-color: rgb(55, 56, 55); /* Adding background color to the button */
+                animation: moveInRight 1s ease-in 0.9s forwards;
+            
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 3px;
+                    z-index: 1; /* Behind the text */
+                    background-color: rgb(114, 214, 27); /* Background applied instantly */
+                    transform: scaleY(0);
+                    transition: transform 0.4s ease, width 0.4s ease 0.3s;
+                    transform-origin: center;
+                }
+            
+                &:hover::before {
+                    transform: scaleY(1);
+                    width: 100%; /* Transition delayed, but background applied instantly */
+                    z-index: 1; /* Keep the background behind the text */
+                }
+            
+                &:active::before, &:hover::before {
+                    background-color: rgb(114, 214, 27); /* The hover background color */
+                }
+            }
+            
+           }
+        }
+
+        &__media {
+            height: 100%;
+            flex: 1;
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 85%);
+            transition: all 0.4s ease-in;
+            
+
+            video {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                overflow: hidden;
+            }
+
+            &:hover {
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+                transform: scale(1.1);
+            }
+        }
+    }
+}
