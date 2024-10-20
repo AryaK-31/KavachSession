@@ -1,5 +1,6 @@
 @import './variables';
 @import './animations';
+@import './mixins';
 
 // Default CSS overiding
 *,
@@ -22,6 +23,7 @@ html {
 .container {
     position: relative;
     overflow: hidden;
+
     .navbar-container {
         position: absolute;
     }
@@ -29,86 +31,109 @@ html {
     .hero {
         height: 80vh;
         width: 100%;
-        background-color: $color-secondary;
+        background-color: $color-primary;
         display: flex;
+        overflow: hidden;
 
         &__content {
             // Three values: flex-grow | flex-shrink | flex-basis
-            flex: 0 0 55%; 
+            flex: 0 0 55%;
             height: 100%;
             display: flex;
             align-items: center;
             // margin-left: 10%;
             gap: 2rem;
 
-           .content{
-            display: flex;
-            flex-direction: column;
-            gap: 3.5rem;
-            margin-left: 10%;
-            .headline{
+            .content {
                 display: flex;
                 flex-direction: column;
-                font-size: 5.8rem;
-                transition: all 1s ease;
-                animation: moveInRight 1s ease-in forwards;
-            }
+                gap: 3.5rem;
+                margin-left: 10%;
 
-            .description{
-                opacity: 0;
-                font-size: 2.2rem;
-                font-weight: 600;
-                max-width: 25vw;
-                animation: moveInRight 1s ease-in 0.4s forwards;
-            }
+                .headline {
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 5.8rem;
+                    color: $font-color-secondary;
+                    transition: all 1s ease;
+                    animation: moveInRight 1s ease-in forwards;
 
-            .points{
-                opacity: 0;
-                font-size: 2rem;
-                list-style: none;
-                animation: moveInRight 1s ease-in 0.7s forwards;
-            }
+                    span {
+                        span {
+                            color: $font-color-primary;
+                        }
+                    }
+                }
 
-            .button {
-                opacity: 0;
-                align-self: self-start;
-                flex: none;
-                font-size: 1.4rem;
-                font-weight: 700;
-                padding: 1rem 2rem;
-                position: relative;
-                z-index: 2; /* Ensure the text remains on top */
-                border: none;
-                color: white;
-                background-color: rgb(55, 56, 55); /* Adding background color to the button */
-                animation: moveInRight 1s ease-in 0.9s forwards;
-            
-                &::before {
-                    content: '';
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    height: 100%;
-                    width: 3px;
-                    z-index: 1; /* Behind the text */
-                    background-color: rgb(114, 214, 27); /* Background applied instantly */
-                    transform: scaleY(0);
-                    transition: transform 0.4s ease, width 0.4s ease 0.3s;
-                    transform-origin: center;
+                .description {
+                    opacity: 0;
+                    color: $font-color-secondary;
+                    font-size: 2.2rem;
+                    font-weight: 600;
+                    max-width: 26vw;
+                    animation: moveInRight 1s ease-in 0.4s forwards;
+
+                    span {
+                        color: $font-color-primary;
+                    }
                 }
-            
-                &:hover::before {
-                    transform: scaleY(1);
-                    width: 100%; /* Transition delayed, but background applied instantly */
-                    z-index: 1; /* Keep the background behind the text */
+
+                .points {
+                    opacity: 0;
+                    font-size: 2rem;
+                    list-style: none;
+                    color: $font-color-secondary;
+                    animation: moveInRight 1s ease-in 0.7s forwards;
                 }
-            
-                &:active::before, &:hover::before {
-                    background-color: rgb(114, 214, 27); /* The hover background color */
+
+                .button {
+                    opacity: 0;
+                    align-self: self-start;
+                    flex: none;
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                    padding: 1rem 2rem;
+                    position: relative;
+                    z-index: 2;
+                    /* Ensure the text remains on top */
+                    border: none;
+                    color: $font-color-primary;
+                    background-color: rgb(89, 90, 89);
+                    /* Adding background color to the button */
+                    animation: moveInRight 1s ease-in 0.9s forwards;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 3px;
+                        z-index: 1;
+                        /* Behind the text */
+                        background-color: $color-tertiary;
+                        /* Background applied instantly */
+                        transform: scaleY(0);
+                        transition: transform 0.4s ease, width 0.4s ease 0.3s;
+                        transform-origin: center;
+                    }
+
+                    &:hover::before {
+                        transform: scaleY(1);
+                        width: 100%;
+                        /* Transition delayed, but background applied instantly */
+                        z-index: 1;
+                        /* Keep the background behind the text */
+                    }
+
+                    &:active::before,
+                    &:hover::before {
+                        background-color: $color-tertiary;
+                        /* The hover background color */
+                    }
                 }
+
             }
-            
-           }
         }
 
         &__media {
@@ -116,7 +141,7 @@ html {
             flex: 1;
             clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 85%);
             transition: all 0.4s ease-in;
-            
+
 
             video {
                 height: 100%;
@@ -131,4 +156,259 @@ html {
             }
         }
     }
+
+    .about {
+        height: 70vh;
+        display: flex;
+
+
+        &__media {
+            flex: 0 0 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $color-tertiary;
+
+            .mediaContainer {
+                display: grid;
+                padding: 2rem;
+                grid-template-rows: repeat(2, 1fr); // Two equal rows
+                grid-template-columns: repeat(2, 1fr); // Two equal columns
+
+                .img {
+                    height: 23vh;
+                    width: 100%;
+                    object-fit: cover;
+
+                    &--1 {
+                        grid-row: 1 / 2; // First row
+                        grid-column: 1 / 2; // First column
+                    }
+
+                    &--2 {
+                        grid-row: 1 / 2; // First row
+                        grid-column: 2 / 3; // Second column
+                    }
+
+                    &--3 {
+                        grid-row: 2 / 3; // Second row
+                        grid-column: 1 / 2; // Span both columns in the second row
+                        background-color: bisque;
+                    }
+                }
+            }
+        }
+
+        &__content {
+            flex: 1;
+            height: 100%;
+            width: 100%;
+            padding: 2.5rem 4rem;
+
+            .headline {
+                font-size: 4.6rem;
+                margin-bottom: 8rem;
+
+            }
+
+            .aboutContainer {
+                display: flex;
+                justify-content: center;
+                align-items: start;
+                flex-direction: column;
+                gap: 5rem;
+
+
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3rem;
+
+                    .quote {
+                        font-size: 4rem;
+                    }
+
+
+                    .description {
+                        font-size: 2.3rem;
+                        max-width: 70rem;
+                    }
+
+                    .btn {
+                        align-self: flex-start;
+                        border: 0;
+                        background-color: transparent;
+                        font-size: 1.9rem;
+                        font-weight: 700;
+                        transition: all 0.5s ease;
+
+                        &:hover {
+                            transform: translateX(1rem);
+                        }
+
+                        & span:nth-child(1) {
+                            text-decoration: underline;
+                            text-underline-offset: 6px;
+                        }
+
+                        & span:nth-child(2) {
+                            font-size: 2.4rem;
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+
+    .gallery {
+        background-color: $color-tertiary ;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(7, 10vh);
+        grid-gap: 1.5rem;
+        padding: 1.5rem;
+
+        &__item {
+            &--1 {
+                grid-row: 1/span 2;
+                grid-column: 1/span 2;
+                background-color: black;
+                color: white;
+                font-size: 3.5rem;
+                letter-spacing: 0.5rem;
+                @include flexHorizontal
+            }
+
+            &--2 {
+                grid-row: 1/span 3;
+                grid-column: 3/span 3;
+            }
+
+            &--3 {
+                grid-row: 1/span 2;
+                grid-column: 6/7;
+            }
+
+            &--4 {
+                grid-row: 1/span 2;
+                grid-column: 7/-1;
+            }
+
+            &--5 {
+                grid-row: 3/span 3;
+                grid-column: 1/span 2;
+            }
+
+            &--6 {
+                grid-row: 4/span 2;
+                grid-column: 3/span 2;
+            }
+
+            &--7 {
+                grid-row: 4/5;
+                grid-column: 5/6;
+            }
+
+            &--8 {
+                grid-row: 3/span 2;
+                grid-column: 6/span 2;
+            }
+
+            &--9 {
+                grid-row: 3/span 3;
+                grid-column: 8/-1;
+            }
+
+            &--10 {
+                grid-row: 6/span 2;
+                grid-column: 1/2;
+            }
+
+            &--11 {
+                grid-row: 6/span 2;
+                grid-column: 2/span 2;
+            }
+
+            &--12 {
+                grid-row: 6/span 2;
+                grid-column: 4/5;
+            }
+
+
+            &--13 {
+                grid-row: 5/span 3;
+                grid-column: 5/span 3;
+            }
+
+            &--14 {
+                grid-row: 6/span 2;
+                grid-column: 8/-1;
+            }
+        }
+
+        &__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    .footer {
+        height: 40vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        &__content {
+            flex: 0 0 50%;
+            @include flexVertical;
+            gap: 2rm;
+
+
+            .temp {
+
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                padding: 20rem;
+
+                .headline {
+                    display: flex;
+                    align-items: center;
+
+
+                    .logo {
+                        height: 8rem;
+                    }
+
+                    h3 {
+                        font-size: 4rem;
+                    }
+                }
+
+                .description {
+                    font-size: 1.5rem;
+                    max-width: 70%;
+                }
+
+                .social {
+                    display: flex;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        &__media {
+            flex: 1;
+        }
+    }
+
 }
+
+// .temp {
+//     background-color: black;
+// }
