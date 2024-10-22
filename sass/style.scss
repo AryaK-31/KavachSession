@@ -364,68 +364,91 @@ html {
         width: 100%;
         background-color: $color-primary;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 10rem;
+        gap: 1rem;
 
-        .service {
-            width: 30rem;
-            height: 40rem;
-            border-radius: 2rem;
-            overflow: hidden;
-            border: 8px solid $color-tertiary;
-            position: relative;
-          
-            &:hover .service_content {
-              right: 0;
+        .service_title{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .title{
+                font-size: 6rem;
+                color: $font-color-secondary;
             }
-          
-            .service_media {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              border-radius: 1rem;
-            }
-          
-            .service_content {
-              width: 100%;
-              height: 100%;
-              top: 0;
-              right: -100%;
-              position: absolute;
-              background-color: rgba(0, 0, 0, 0.564);
-              backdrop-filter: blur(0.2rem);
-              border-radius: 1rem;
-              color: white;
-              padding: 1rem;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              transition: 1s;
-          
-              .headline {
-                text-transform: uppercase;
-                font-size: 2.5rem;
-              }
-          
-              .description {
-                text-transform: capitalize;
-                font-size: 1.3rem;
-                line-height: 1.3rem;
-                margin: 2rem 0;
-              }
-          
-              .btn {
-                width: 50%;
-                background: $color-tertiary;
-                color: black;
-                padding: 0.7rem 1.2rem;
-                border-radius: 0.5rem;
-                text-transform: capitalize;
-                border: none;
-                outline: none;
-                cursor: pointer;
-               }
+        }
+
+        .service_container{
+            height: 80%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10rem;
+
+            .service {
+                width: 30rem;
+                height: 40rem;
+                border-radius: 2rem;
+                overflow: hidden;
+                border: 8px solid $color-tertiary;
+                position: relative;
+              
+                &:hover .service_content {
+                  right: 0;
+                }
+              
+                .service_media {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  border-radius: 1rem;
+                }
+              
+                .service_content {
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  right: -100%;
+                  position: absolute;
+                  background-color: rgba(0, 0, 0, 0.564);
+                  backdrop-filter: blur(0.2rem);
+                  border-radius: 1rem;
+                  color: white;
+                  padding: 1rem;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  transition: 1s;
+              
+                  .headline {
+                    text-transform: uppercase;
+                    font-size: 2.5rem;
+                  }
+              
+                  .description {
+                    text-transform: capitalize;
+                    font-size: 1.8rem;
+                    line-height: 1.5rem;
+                    margin: 1.5rem 0;
+                  }
+              
+                  .btn {
+                    width: 50%;
+                    margin-top: 3rem;
+                    background: $color-tertiary;
+                    color: $font-color-secondary;
+                    font-size: 1.5rem;
+                    padding: 0.7rem 1.2rem;
+                    border-radius: 0.5rem;
+                    text-transform: capitalize;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                   }
+                }
             }
         }
       }
@@ -456,33 +479,80 @@ html {
                     display: flex;
                     gap: 1rem;
                     color: $font-color-secondary;
-                    flex-direction: column;
-                    align-items: flex-start;
+                    align-items: center;
     
                     .logo{
                         height: 8rem;
                     }
     
                     h3{
-                        font-size: 2.5rem;
+                        font-size: 4rem;
+                        color: $font-color-primary;
                     }
                 }
     
-                .description{
-                    font-size: 1.7rem;
-                    max-width: 70%;
-                    color: $font-color-secondary;
-                }
+                .footer-form {
+                    width: 100%;
+                
+                    h2 {
+                      text-align: center;
+                      margin-bottom: 1.5rem;
+                      font-size: 2.5rem;
+                      color: $font-color-secondary;
+                    }
+                
+                    form {
+                      display: flex;
+                      flex-direction: column;
+                
+                      label {
+                        font-size: 1.5rem;
+                        color: $font-color-secondary;
+                        margin-bottom: 0.5rem;
+                      }
+                
+                      input,
+                      textarea {
+                        margin-bottom: 1rem;
+                        padding: 0.8rem;
+                        font-size: 2rem;
+                        border: none;
+                        border-radius: 5px;
+                        outline: none;
+                
+                        &:focus {
+                          box-shadow: 0 0 1rem $color-tertiary;
+                        }
+                      }
+                
+                      button {
+                        padding: 1rem;
+                        font-size: 1.5rem;
+                        color: #fff;
+                        background-color: $font-color-primary;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        transition: background-color 0.3s ease;
+                      }
+                    }
+                  }
 
                 .social{
                     display: flex;
-                    gap: 2rem;
+                    gap: 4rem;
+                    align-items: center;
+                    justify-content: center;
 
                     a{
                         text-decoration: none;
 
-                        i{
+                        .icon{
                             color: $font-color-secondary; 
+                        }
+
+                        &:hover .icon{
+                            color: $font-color-primary;
                         }
                         
                     }
